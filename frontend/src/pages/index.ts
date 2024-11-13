@@ -1,0 +1,6 @@
+export { default as Login } from './login/login'
+export { default as CurvaCrescimento } from './curva-crescimento/curva-crescimento'
+export { default as Home } from './home/home'
+export { default as Medicao } from './medicao/medicao'
+export { default as NovoRegistro } from './novo-registro/novo-registro'
+export { default as Perfil } from './perfil/perfil'
