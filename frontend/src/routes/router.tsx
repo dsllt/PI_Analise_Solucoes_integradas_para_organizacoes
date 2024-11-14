@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {
+  Busca,
   CurvaCrescimento,
   Home,
   Login,
@@ -10,7 +11,7 @@ import {
 
 const routers = createBrowserRouter([
   {
-    path: '/',
+    path: '/login',
     element: <Login />,
   },
   {
@@ -32,6 +33,10 @@ const routers = createBrowserRouter([
   {
     path: '/curva-crescimento',
     element: <CurvaCrescimento />,
+  },
+  {
+    path: '/busca',
+    element: <Busca />,
   },
 ])
 

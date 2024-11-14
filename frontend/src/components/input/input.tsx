@@ -6,11 +6,11 @@ type InputProps = {
 }
 const Input = ({ label, id, placeholder, type }: InputProps) => {
   return (
-    <div>
+    <div className="w-full">
       <label htmlFor={id} className="block text-sm/6 font-medium text-gray-900">
         {label}
       </label>
-      <div className="mt-2">
+      <div className="mt-2 w-full">
         <input
           type={type}
           name={id}
