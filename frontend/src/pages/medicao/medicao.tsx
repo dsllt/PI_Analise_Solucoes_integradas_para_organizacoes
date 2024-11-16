@@ -1,10 +1,16 @@
+import { useNavigate } from 'react-router-dom'
 import { Button, Input } from '../../components'
 
 const Medicao = () => {
+  const navigate = useNavigate()
+
+  const onSalvar = () => {
+    navigate('/home')
+  }
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       <h3 className="mb-4 font-bold">Medição</h3>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-64">
         <Input
           id="altura"
           label="Altura"
@@ -18,7 +24,7 @@ const Medicao = () => {
           placeholder="Digite a idade"
           type="text"
         />
-        <Button text="Salvar" type="button" />
+        <Button text="Salvar" type="button" onClick={onSalvar} />
       </div>
     </div>
   )

@@ -1,6 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import { Button, Input } from '../../components'
 
 const Perfil = () => {
+  const navigate = useNavigate()
+  const onSalvar = () => {
+    navigate('/home')
+  }
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       <h3 className="mb-4 font-bold">Perfil</h3>
@@ -18,7 +23,7 @@ const Perfil = () => {
           placeholder="Digite a data de nascimento"
           type="text"
         />
-        <Button text="Salvar" type="button" />
+        <Button text="Salvar" type="button" onClick={onSalvar} />
       </div>
     </div>
   )

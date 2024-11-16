@@ -43,7 +43,7 @@ type BuscaInputProps = {
 
 const BuscaInput = ({ onClickBuscar }: BuscaInputProps) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-64">
       <Input
         id="nome"
         label="Nome"
