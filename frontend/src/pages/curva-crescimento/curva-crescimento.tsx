@@ -104,10 +104,6 @@ const CurvaCrescimento = () => {
         const listaIdades = data.map((item: { idade: number }) => item.idade)
         setAlturas(listaAlturas)
         setIdades(listaIdades)
-
-        console.log('Alturas:', alturas)
-        console.log('Idades:', idades)
-        console.log('Idades:', data)
       } else {
         console.error('Erro ao buscar medições:', response.statusText)
       }

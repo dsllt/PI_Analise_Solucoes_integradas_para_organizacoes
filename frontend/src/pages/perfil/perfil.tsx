@@ -141,7 +141,7 @@ const calculateAge = (birthDateString: string): number => {
 
   return today.getFullYear() - birthDate.getFullYear()
 }
-const formatDateToBrazilian = (dateString: string): string => {
+export const formatDateToBrazilian = (dateString: string): string => {
   const [year, month, day] = dateString.split('-')
   return `${day}/${month}/${year}`
 }

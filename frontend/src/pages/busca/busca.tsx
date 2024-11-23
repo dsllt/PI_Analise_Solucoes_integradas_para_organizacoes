@@ -1,56 +1,54 @@
 import { useState } from 'react'
-import { Button, Input } from '../../components'
+import { Button } from '../../components'
 import { useNavigate } from 'react-router-dom'
+import ListaPacientes from '../../components/lista-pacientes/lista-pacientes'
 
 const Busca = () => {
   const navigate = useNavigate()
-  const [showBusca, setShowBusca] = useState(false)
+  const [pacientes, setPacientes] = useState([])
 
-  const onBuscarPaciente = () => {
-    // TO DO busca de paciente registrado na API
-    // se registrado navega para home
-    // se não registrado mostra mensagem de erro
-    navigate('/home')
+  const onBuscarPaciente = async () => {
+    const usuarioId = localStorage.getItem('usuarioId')
+
+    const response = await fetch(
+      `http://localhost:8080/pacientes?usuarioId=${usuarioId}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+
+    if (response.ok) {
+      const data = await response.json()
+      setPacientes(data)
+    } else {
+      console.error('Erro ao buscar pacientes:', response.statusText)
+    }
   }
+
   const onAdicionarPaciente = () => {
-    navigate('/novo-registro')
+    navigate('/cadastrar-paciente')
   }
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       <h3 className="mb-4 font-bold">Busca</h3>
-      <div className="flex flex-col gap-4">
+      <div className="flex justify-between w-3/6 gap-5">
         <Button
-          text="Busque um paciente"
+          text="Busque seus pacientes"
           type="button"
-          onClick={() => setShowBusca(true)}
+          onClick={onBuscarPaciente}
         />
-        {showBusca && <BuscaInput onClickBuscar={onBuscarPaciente} />}
         <Button
           text="Adicione novo paciente"
           type="button"
           onClick={onAdicionarPaciente}
         />
       </div>
+      {pacientes.length > 0 && <ListaPacientes pacientes={pacientes} />}
     </div>
   )
 }
 
 export default Busca
-
-type BuscaInputProps = {
-  onClickBuscar: () => void
-}
-
-const BuscaInput = ({ onClickBuscar }: BuscaInputProps) => {
-  return (
-    <div className="flex flex-col gap-2 w-64">
-      <Input
-        id="nome"
-        label="Nome"
-        placeholder="Digite um nome para buscar"
-        type="text"
-      />
-      <Button text="Buscar" type="button" onClick={onClickBuscar} />
-    </div>
-  )
-}

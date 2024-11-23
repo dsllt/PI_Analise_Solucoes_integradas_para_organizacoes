@@ -52,7 +52,7 @@ const CadastrarPaciente = () => {
           id="data"
           label="Data de nascimento"
           placeholder="Digite a data de nascimento"
-          type="text"
+          type="date"
           onChange={(e) => setDataNascimento(e.target.value)}
         />
         <Button text="Salvar" type="button" onClick={onSalvar} />

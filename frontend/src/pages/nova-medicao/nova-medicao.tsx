@@ -11,17 +11,9 @@ const NovaMedicao = () => {
   const onClickVoltar = () => {
     navigate('/perfil')
   }
-  const pacienteId = localStorage.getItem('pacienteId')
-  console.log(pacienteId)
 
   const onSalvar = async () => {
     const pacienteId = localStorage.getItem('pacienteId')
-    console.log({
-      altura,
-      idade,
-      peso,
-      paciente: { id: pacienteId },
-    })
     if (pacienteId === undefined) return
 
     const response = await fetch('http://localhost:8080/medicoes', {
