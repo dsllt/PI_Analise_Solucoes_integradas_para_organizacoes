@@ -1,12 +1,30 @@
 import { useNavigate } from 'react-router-dom'
 import { Button, Input } from '../../components'
+import { useState } from 'react'
 
 const Login = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  const onClickEntrar = () => {
-    // TO DO integração com api de login
-    navigate('/busca')
+  const onClickEntrar = async () => {
+    const response = await fetch('http://localhost:8080/usuarios/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        senha: password,
+      }),
+    })
+
+    if (response.ok) {
+      navigate('/busca')
+    } else {
+      console.error('Erro no login:', response.statusText)
+    }
   }
+
   return (
     <div className="w-screen h-screen flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -22,15 +40,17 @@ const Login = () => {
             label="E-mail"
             placeholder="Digite seu e-mail"
             type="email"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             id="senha"
             label="Senha"
             placeholder="Digite sua senha"
             type="password"
+            onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Button text="Entrar" type="submit" onClick={onClickEntrar} />
+          <Button text="Entrar" type="button" onClick={onClickEntrar} />
         </form>
       </div>
     </div>
