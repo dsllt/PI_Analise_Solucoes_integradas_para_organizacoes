@@ -1,12 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../../components'
 import Chart from 'react-apexcharts'
+import { useEffect, useState } from 'react'
 type PropsChart = object
 
 const CurvaCrescimento = () => {
   const navigate = useNavigate()
+
+  const [alturas, setAlturas] = useState([])
+  const [idades, setIdades] = useState([])
+
   const onVoltar = () => {
-    navigate('/home')
+    navigate('/perfil')
   }
   const options: PropsChart = {
     chart: {
@@ -43,7 +48,7 @@ const CurvaCrescimento = () => {
       title: {
         text: 'Idade (meses)',
       },
-      categories: [0, 10, 20, 30, 40, 50, 60],
+      categories: idades,
     },
     yaxis: {
       tickAmount: 10,
@@ -79,9 +84,37 @@ const CurvaCrescimento = () => {
   const series = [
     {
       name: 'Curva do crescimento',
-      data: [50, 65, 72, 80, 85, 90, 95],
+      data: alturas,
     },
   ]
+
+  useEffect(() => {
+    const fetchMedicoes = async () => {
+      const pacienteId = localStorage.getItem('pacienteId')
+      const response = await fetch(
+        `http://localhost:8080/medicoes?pacienteId=${pacienteId}`,
+        {
+          method: 'GET',
+        }
+      )
+
+      if (response.ok) {
+        const data = await response.json()
+        const listaAlturas = data.map((item: { altura: number }) => item.altura)
+        const listaIdades = data.map((item: { idade: number }) => item.idade)
+        setAlturas(listaAlturas)
+        setIdades(listaIdades)
+
+        console.log('Alturas:', alturas)
+        console.log('Idades:', idades)
+        console.log('Idades:', data)
+      } else {
+        console.error('Erro ao buscar medições:', response.statusText)
+      }
+    }
+
+    fetchMedicoes()
+  }, [])
 
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">

@@ -1,6 +1,8 @@
 package com.senac.curva_crescimento.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,11 +20,11 @@ public class Paciente {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-	@JsonIgnore
     private Usuario usuario;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
-    private List<Medicao> medicoes;
+	@JsonManagedReference
+	private List<Medicao> medicoes;
 
 	public Long getId() {
 		return id;

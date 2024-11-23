@@ -1,11 +1,14 @@
 package com.senac.curva_crescimento.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Medicao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +20,7 @@ public class Medicao {
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")
-	@JsonIgnore
+	@JsonBackReference
     private Paciente paciente;
 
 	public Long getId() {

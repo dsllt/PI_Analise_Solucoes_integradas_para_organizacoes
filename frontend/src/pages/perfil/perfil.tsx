@@ -56,7 +56,6 @@ const Perfil = () => {
 
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
         setNome(data.nome)
         setDataNascimento(data.dataNascimento)
         setIdade(calculateAge(data.dataNascimento))

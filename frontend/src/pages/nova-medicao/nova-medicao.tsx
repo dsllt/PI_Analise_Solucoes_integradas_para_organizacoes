@@ -11,9 +11,18 @@ const NovaMedicao = () => {
   const onClickVoltar = () => {
     navigate('/perfil')
   }
+  const pacienteId = localStorage.getItem('pacienteId')
+  console.log(pacienteId)
 
   const onSalvar = async () => {
     const pacienteId = localStorage.getItem('pacienteId')
+    console.log({
+      altura,
+      idade,
+      peso,
+      paciente: { id: pacienteId },
+    })
+    if (pacienteId === undefined) return
 
     const response = await fetch('http://localhost:8080/medicoes', {
       method: 'POST',
@@ -42,21 +51,21 @@ const NovaMedicao = () => {
         <Input
           id="altura"
           label="Altura"
-          placeholder="Digite a altura"
+          placeholder="Digite a altura (em cm)"
           type="text"
           onChange={(e) => setAltura(Number(e.target.value))}
         />
         <Input
           id="peso"
           label="Peso"
-          placeholder="Digite o peso"
+          placeholder="Digite o peso (em kg)"
           type="text"
           onChange={(e) => setPeso(Number(e.target.value))}
         />
         <Input
           id="idade"
           label="Idade"
-          placeholder="Digite a idade"
+          placeholder="Digite a idade (em meses)"
           type="text"
           onChange={(e) => setIdade(Number(e.target.value))}
         />
