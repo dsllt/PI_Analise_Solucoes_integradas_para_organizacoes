@@ -5,6 +5,8 @@ import com.senac.curva_crescimento.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
@@ -13,6 +15,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario cadastrar(Usuario usuario) {
+        Optional<Usuario> validaUsuario = usuarioRepository.findByEmail(usuario.getEmail());
+        if(validaUsuario.isPresent()){
+            throw new RuntimeException("Usuário já cadastrado");
+        }
         return usuarioRepository.save(usuario);
     }
 
