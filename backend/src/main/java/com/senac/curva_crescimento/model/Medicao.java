@@ -1,5 +1,6 @@
 package com.senac.curva_crescimento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class Medicao {
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")
+	@JsonIgnore
     private Paciente paciente;
 
 	public Long getId() {

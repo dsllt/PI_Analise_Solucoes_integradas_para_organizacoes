@@ -1,0 +1,70 @@
+import { useNavigate } from 'react-router-dom'
+import { Button, Input } from '../../components'
+import { useState } from 'react'
+
+const NovaMedicao = () => {
+  const navigate = useNavigate()
+  const [altura, setAltura] = useState(0)
+  const [idade, setIdade] = useState(0)
+  const [peso, setPeso] = useState(0)
+
+  const onClickVoltar = () => {
+    navigate('/perfil')
+  }
+
+  const onSalvar = async () => {
+    const pacienteId = localStorage.getItem('pacienteId')
+
+    const response = await fetch('http://localhost:8080/medicoes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        altura,
+        idade,
+        peso,
+        paciente: { id: pacienteId },
+      }),
+    })
+
+    if (response.ok) {
+      navigate('/perfil')
+    } else {
+      console.error('Erro ao cadastrar usuário:', response.statusText)
+    }
+  }
+
+  return (
+    <div className="w-full h-screen flex flex-col content-center items-center justify-center">
+      <h3 className="mb-4 font-bold">Medição</h3>
+      <div className="flex flex-col gap-4 w-64">
+        <Input
+          id="altura"
+          label="Altura"
+          placeholder="Digite a altura"
+          type="text"
+          onChange={(e) => setAltura(Number(e.target.value))}
+        />
+        <Input
+          id="peso"
+          label="Peso"
+          placeholder="Digite o peso"
+          type="text"
+          onChange={(e) => setPeso(Number(e.target.value))}
+        />
+        <Input
+          id="idade"
+          label="Idade"
+          placeholder="Digite a idade"
+          type="text"
+          onChange={(e) => setIdade(Number(e.target.value))}
+        />
+        <Button text="Salvar" type="button" onClick={onSalvar} />
+        <Button text="Voltar" type="button" onClick={onClickVoltar} />
+      </div>
+    </div>
+  )
+}
+
+export default NovaMedicao

@@ -3,7 +3,7 @@ export { default as CadastrarUsuario } from './cadastrar-usuario/cadastrar-usuar
 export { default as Login } from './login/login'
 export { default as CurvaCrescimento } from './curva-crescimento/curva-crescimento'
 export { default as Menu } from './menu/menu'
-export { default as Medicao } from './medicao/medicao'
 export { default as CadastrarPaciente } from './cadastrar-paciente/cadastrar-paciente'
 export { default as Perfil } from './perfil/perfil'
 export { default as Busca } from './busca/busca'
+export { default as NovaMedicao } from './nova-medicao/nova-medicao'

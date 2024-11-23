@@ -1,5 +1,6 @@
 package com.senac.curva_crescimento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Paciente {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+	@JsonIgnore
     private Usuario usuario;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)

@@ -40,8 +40,8 @@ const Perfil = () => {
     navigate('/busca')
   }
 
-  const onClickNovoRegistro = () => {
-    navigate('/novo-registro')
+  const onClickNovaMedicao = () => {
+    navigate('/nova-medicao')
   }
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const Perfil = () => {
 
       if (response.ok) {
         const data = await response.json()
-
+        console.log(data)
         setNome(data.nome)
         setDataNascimento(data.dataNascimento)
         setIdade(calculateAge(data.dataNascimento))
@@ -72,7 +72,7 @@ const Perfil = () => {
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       {!isEditarEnabled && (
         <div className="flex flex-col gap-4 w-72">
-          <h3 className="mb-4 font-bold">Perfil</h3>
+          <h1 className="mb-4 font-bold text-center">Perfil</h1>
           <div>
             <div className="flex gap-3">
               <span className="font-bold">Nome</span>
@@ -93,9 +93,9 @@ const Perfil = () => {
             onClick={() => setIsEditarEnabled(true)}
           />
           <Button
-            text="Novo registro"
+            text="Nova medição"
             type="button"
-            onClick={onClickNovoRegistro}
+            onClick={onClickNovaMedicao}
           />
           <Button
             text="Curva de crescimento"

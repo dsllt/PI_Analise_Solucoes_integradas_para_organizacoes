@@ -6,8 +6,8 @@ import {
   CurvaCrescimento,
   Home,
   Login,
-  Medicao,
   Menu,
+  NovaMedicao,
   Perfil,
 } from '../pages'
 
@@ -37,8 +37,8 @@ const routers = createBrowserRouter([
     element: <Perfil />,
   },
   {
-    path: '/medicao',
-    element: <Medicao />,
+    path: 'nova-medicao',
+    element: <NovaMedicao />,
   },
   {
     path: '/curva-crescimento',
