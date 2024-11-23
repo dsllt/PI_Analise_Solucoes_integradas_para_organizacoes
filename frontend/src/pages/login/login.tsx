@@ -19,6 +19,8 @@ const Login = () => {
     })
 
     if (response.ok) {
+      const data = await response.json()
+      localStorage.setItem('usuarioId', data.id)
       navigate('/busca')
     } else {
       console.error('Erro no login:', response.statusText)

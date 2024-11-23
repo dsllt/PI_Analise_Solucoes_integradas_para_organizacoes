@@ -14,7 +14,7 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public Paciente cadastrar(@RequestBody Paciente paciente, @RequestParam Long usuarioId) {
         return pacienteService.cadastrar(paciente, usuarioId);
     }

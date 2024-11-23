@@ -27,7 +27,7 @@ const CadastrarUsuario = () => {
     if (response.ok) {
       navigate('/login')
     } else {
-      console.error('Erro no login:', response.statusText)
+      console.error('Erro ao cadastrar usuário:', response.statusText)
     }
   }
 

@@ -1,13 +1,13 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {
   Busca,
+  CadastrarPaciente,
   CadastrarUsuario,
   CurvaCrescimento,
   Home,
   Login,
   Medicao,
   Menu,
-  NovoRegistro,
   Perfil,
 } from '../pages'
 
@@ -29,8 +29,8 @@ const routers = createBrowserRouter([
     element: <Menu />,
   },
   {
-    path: '/novo-registro',
-    element: <NovoRegistro />,
+    path: '/cadastrar-paciente',
+    element: <CadastrarPaciente />,
   },
   {
     path: '/perfil',
