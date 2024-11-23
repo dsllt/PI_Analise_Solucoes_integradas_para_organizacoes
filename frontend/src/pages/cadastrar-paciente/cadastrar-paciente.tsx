@@ -6,7 +6,6 @@ const CadastrarPaciente = () => {
   const navigate = useNavigate()
 
   const [nome, setNome] = useState('')
-  const [idade, setIdade] = useState('')
   const [dataNascimento, setDataNascimento] = useState('')
 
   const onSalvar = async () => {
@@ -21,7 +20,6 @@ const CadastrarPaciente = () => {
         },
         body: JSON.stringify({
           nome,
-          idade,
           dataNascimento,
         }),
       }
@@ -36,6 +34,9 @@ const CadastrarPaciente = () => {
     }
   }
 
+  const onClickVoltar = () => {
+    navigate('/busca')
+  }
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       <h3 className="mb-4 font-bold">Registre um novo paciente</h3>
@@ -48,13 +49,6 @@ const CadastrarPaciente = () => {
           onChange={(e) => setNome(e.target.value)}
         />
         <Input
-          id="idade"
-          label="Idade"
-          placeholder="Digite a idade"
-          type="text"
-          onChange={(e) => setIdade(e.target.value)}
-        />
-        <Input
           id="data"
           label="Data de nascimento"
           placeholder="Digite a data de nascimento"
@@ -62,6 +56,7 @@ const CadastrarPaciente = () => {
           onChange={(e) => setDataNascimento(e.target.value)}
         />
         <Button text="Salvar" type="button" onClick={onSalvar} />
+        <Button text="Voltar" type="button" onClick={onClickVoltar} />
       </div>
     </div>
   )

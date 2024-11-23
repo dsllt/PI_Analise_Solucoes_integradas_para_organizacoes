@@ -8,4 +8,6 @@ public interface PacienteService {
     Paciente cadastrar(Paciente paciente, Long usuarioId);
     List<Paciente> buscarPacientes(Long usuarioId);
     Paciente buscarPorId(Long id);
+
+    Paciente editarPorId(Long id, Paciente pacienteEditado);
 }

@@ -28,5 +28,10 @@ public class PacienteController {
     public Paciente buscarPorId(@PathVariable Long id) {
         return pacienteService.buscarPorId(id);
     }
+
+    @PutMapping("/{id}")
+    public Paciente editarPorId(@PathVariable Long id, @RequestBody Paciente paciente) {
+        return pacienteService.editarPorId(id, paciente);
+    }
 }
 

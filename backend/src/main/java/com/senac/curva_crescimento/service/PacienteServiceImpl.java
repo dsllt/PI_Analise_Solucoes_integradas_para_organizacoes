@@ -33,5 +33,15 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
     }
+
+    @Override
+    public Paciente editarPorId(Long id, Paciente pacienteEditado) {
+        Paciente paciente = pacienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+        paciente.setDataNascimento(pacienteEditado.getDataNascimento());
+        paciente.setNome(pacienteEditado.getNome());
+        pacienteRepository.save(paciente);
+        return paciente;
+    }
 }
 
