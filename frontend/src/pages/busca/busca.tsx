@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../../components'
 import { useNavigate } from 'react-router-dom'
 import ListaPacientes from '../../components/lista-pacientes/lista-pacientes'
@@ -31,6 +31,19 @@ const Busca = () => {
   const onAdicionarPaciente = () => {
     navigate('/cadastrar-paciente')
   }
+
+  const onClickSair = () => {
+    navigate('/')
+    localStorage.clear()
+  }
+
+  useEffect(() => {
+    const usuarioId = localStorage.getItem('usuarioId')
+    if (!usuarioId) {
+      navigate('/')
+    }
+  }, [navigate])
+
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       <h3 className="mb-4 font-bold">Busca</h3>
@@ -47,6 +60,9 @@ const Busca = () => {
         />
       </div>
       {pacientes.length > 0 && <ListaPacientes pacientes={pacientes} />}
+      <div className="mt-4 w-60">
+        <Button text="Sair" type="button" onClick={onClickSair} />
+      </div>
     </div>
   )
 }

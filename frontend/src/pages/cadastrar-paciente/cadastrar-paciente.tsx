@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Button, Input } from '../../components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const CadastrarPaciente = () => {
   const navigate = useNavigate()
@@ -37,6 +37,14 @@ const CadastrarPaciente = () => {
   const onClickVoltar = () => {
     navigate('/busca')
   }
+
+  useEffect(() => {
+    const usuarioId = localStorage.getItem('usuarioId')
+    if (!usuarioId) {
+      navigate('/')
+    }
+  }, [navigate])
+
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       <h3 className="mb-4 font-bold">Registre um novo paciente</h3>

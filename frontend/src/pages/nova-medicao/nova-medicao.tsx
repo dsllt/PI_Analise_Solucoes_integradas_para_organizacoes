@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Button, Input } from '../../components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const NovaMedicao = () => {
   const navigate = useNavigate()
@@ -35,6 +35,13 @@ const NovaMedicao = () => {
       console.error('Erro ao cadastrar usuário:', response.statusText)
     }
   }
+
+  useEffect(() => {
+    const usuarioId = localStorage.getItem('usuarioId')
+    if (!usuarioId) {
+      navigate('/')
+    }
+  }, [navigate])
 
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">

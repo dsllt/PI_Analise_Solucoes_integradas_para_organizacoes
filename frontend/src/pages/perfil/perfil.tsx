@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { Button, Input } from '../../components'
 import { useEffect, useState } from 'react'
+import { calculateAge, formatDateToBrazilian } from '../../utils/functions'
 
 const Perfil = () => {
   const navigate = useNavigate()
@@ -66,6 +67,13 @@ const Perfil = () => {
 
     fetchPaciente()
   }, [])
+
+  useEffect(() => {
+    const usuarioId = localStorage.getItem('usuarioId')
+    if (!usuarioId) {
+      navigate('/')
+    }
+  }, [navigate])
 
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
@@ -134,14 +142,3 @@ const Perfil = () => {
 }
 
 export default Perfil
-
-const calculateAge = (birthDateString: string): number => {
-  const birthDate = new Date(birthDateString)
-  const today = new Date()
-
-  return today.getFullYear() - birthDate.getFullYear()
-}
-export const formatDateToBrazilian = (dateString: string): string => {
-  const [year, month, day] = dateString.split('-')
-  return `${day}/${month}/${year}`
-}

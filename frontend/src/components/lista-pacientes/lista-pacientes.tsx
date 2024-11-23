@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { formatDateToBrazilian } from '../../pages/perfil/perfil'
+import { formatDateToBrazilian } from '../../utils/functions'
 
 type Paciente = {
   dataNascimento: string
@@ -48,7 +48,7 @@ const ListaPacientes = ({ pacientes }: ListaPacientesProps) => {
         </thead>
         <tbody>
           {pacientes.map((paciente) => (
-            <tr>
+            <tr key={paciente.id}>
               <td className="p-4 border-b border-blue-gray-50">
                 <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                   {paciente.nome}

@@ -6,7 +6,6 @@ import {
   CurvaCrescimento,
   Home,
   Login,
-  Menu,
   NovaMedicao,
   Perfil,
 } from '../pages'
@@ -23,10 +22,6 @@ const routers = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
-  },
-  {
-    path: '/menu',
-    element: <Menu />,
   },
   {
     path: '/cadastrar-paciente',

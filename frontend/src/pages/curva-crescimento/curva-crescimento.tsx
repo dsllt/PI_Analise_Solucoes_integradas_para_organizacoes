@@ -112,6 +112,13 @@ const CurvaCrescimento = () => {
     fetchMedicoes()
   }, [])
 
+  useEffect(() => {
+    const usuarioId = localStorage.getItem('usuarioId')
+    if (!usuarioId) {
+      navigate('/')
+    }
+  }, [navigate])
+
   return (
     <div className="w-full h-screen flex flex-col content-center items-center justify-center">
       <h3 className="mb-4 font-bold">Curva de Crescimento</h3>
