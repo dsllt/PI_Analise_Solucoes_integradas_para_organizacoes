@@ -1,22 +1,32 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import {
   Busca,
+  CadastrarUsuario,
   CurvaCrescimento,
   Home,
   Login,
   Medicao,
+  Menu,
   NovoRegistro,
   Perfil,
 } from '../pages'
 
 const routers = createBrowserRouter([
   {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/cadastrar-usuario',
+    element: <CadastrarUsuario />,
+  },
+  {
     path: '/login',
     element: <Login />,
   },
   {
-    path: '/home',
-    element: <Home />,
+    path: '/menu',
+    element: <Menu />,
   },
   {
     path: '/novo-registro',
